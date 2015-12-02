@@ -1,3 +1,12 @@
-<div class='root'>
-  Welcome to the root page!
+Welcome to the root page!
+
+<div id="main">
+
 </div>
+
+<script type="text/javascript">
+  React.render(
+    React.createElement(TodoList),
+    document.getElementById('main')
+  )
+</script>
