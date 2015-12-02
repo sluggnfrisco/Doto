@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  namespace :api do
+    resources :todos, except: [:new, :edit]     # makes sense -- this is an API
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
