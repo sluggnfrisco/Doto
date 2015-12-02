@@ -3,11 +3,10 @@
 
   // just an object -- don't worry about prototype
   // QUESTION: is this right?
-  var TodoStore = root.TodoStore = {};
 
   // _todos is collection of JS objects we get from server
   // _callbacks is to integrate with our React components to ensure that they render on cue. We will call all of the _callbacks every time our collection changes.
-  var _todos = '', _callbacks = [];
+  var _todos = [], _callbacks = [];
 
   root.TodoStore = {
 
@@ -15,7 +14,7 @@
   // scope is the object itself -- this.asdf === root.TodoStore.asdf
     changed: function() {
       // QUESTION NOTE: guide says not to worry about this -- should everything be on the root?
-      this._callbacks.forEach( function(callback) {       // invoke each callback
+      _callbacks.forEach( function(callback) {       // invoke each callback
         callback();
       });
     },
@@ -51,18 +50,12 @@
     },
 
     deleteIdFromCollection: function(id) {
-      var delete_idx = -1;
-      var todo;
+      var deleteIdx = _todos.findIndex(function(todo) {
+        return todo.id === id;
+      });
 
-      for (var i = 0; i < _todos.length; i++) {
-        todo = _todos[i];
-        if (todo.id === id) {
-          delete_idx = i;
-        }
-      }
-
-      if (i > -1) {
-        _todos.splice(delete_idx, 1);
+      if (deleteIdx > -1) {
+        _todos.splice(deleteIdx, 1);
       }
     },
 
