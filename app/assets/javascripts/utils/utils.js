@@ -1,7 +1,6 @@
 (function() {
   Array.prototype.find = function(func) {
     for (var i = 0; i < this.length; i++) {
-      console.log(this[i])
       if (func(this[i])) {
         return this[i];
       }

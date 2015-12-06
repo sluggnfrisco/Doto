@@ -23,7 +23,7 @@
       _callbacks.push(func);
     },
 
-    removeChangedHandler: function(func) {
+    removeChangedHandler: function(func) {     // QUESTION: this actually works?
       var index = _callbacks.indexOf(func);
       if (index > -1) {
         _callbacks.splice(index, 1);
@@ -36,8 +36,8 @@
 
     fetch: function() {
       $.ajax({
-        method: 'GET',
         url: '/api/todos',
+        method: 'GET',
         dataType: 'json',
         success: function(response) {
           _todos = response;
@@ -48,8 +48,8 @@
 
     create: function(object) {
       $.ajax({
-        method: 'POST',
         url: '/api/todos',
+        method: 'POST',
         dataType: 'json',
         data: { todo: object },       // strong params, tho Rails can auto-wrap
         success: function(response) {     // response should carry an ID
@@ -67,8 +67,8 @@
       if (typeof todo === 'undefined') {return;}    // if don't exist
 
       $.ajax({
+        url: '/api/todos/' + id,
         method: 'DELETE',
-        url: '/api/todos/id',
         dataType: 'json',
         success: function(response) {
           this.deleteIdFromCollection(id);
@@ -96,12 +96,15 @@
 
       $.ajax({
         method: 'PATCH',
-        url: '/api/todos/id',
+        url: '/api/todos/' + id,
         dataType: 'json',
         data: {todo: {done: newDone}},
         success: function(response) {
           todo.done = newDone;      // in BB, doing this before would've caused page to render the change much faster
           this.changed();
+        }.bind(this),
+        error: function() {
+          alert('error!');
         }
       });
     },

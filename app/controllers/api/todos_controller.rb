@@ -23,7 +23,7 @@ class Api::TodosController < ApplicationController
 
   def destroy
     todo = Todo.find(params[:id])
-    todo.destroy!(todo_params)
+    todo.destroy!             # NOTE REM: no todo_params here
 
     render json: todo
   end

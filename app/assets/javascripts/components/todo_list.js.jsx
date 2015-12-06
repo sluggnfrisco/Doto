@@ -1,6 +1,6 @@
 var TodoList = React.createClass({
   getInitialState: function() {
-    return { collection: TodoStore.all() };
+    return { todos: TodoStore.all() };
   },
 
   componentDidMount: function() {
@@ -11,20 +11,25 @@ var TodoList = React.createClass({
   },
 
   componentWillUnmount: function() {
-    TodoStore.removeChangedHandler(this.todosChanged)
+    TodoStore.removeChangedHandler(this.todosChanged);
   },
 
   todosChanged: function() {
-    this.setState({ collection: TodoStore.all() });
+    this.setState({ todos: TodoStore.all() });    // this will get updated at every change -- that is, we'll always grab the most recent collection
   },
 
   render: function() {
+    // NOTE REM: all our JSX is compiled into JS server-side now, so we can't write JSX in the HTML
     return (
-      <div>{      // REM: need interpolation here
-        this.state.collection.map( function(todo) {
-          return( <li key={todo.id} >{todo.title}</li> );
-        })
-      }</div>
+      <div className='todos-container'>      // REM: need interpolation here
+        {
+          this.state.todos.map( function(todo) {
+            return( <TodoListItem key={todo.id} todo={todo}></TodoListItem> );
+          })
+        }
+
+        <TodoForm></TodoForm>
+      </div>
     );
   },
 });

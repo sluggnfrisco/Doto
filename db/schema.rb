@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202044819) do
+ActiveRecord::Schema.define(version: 20151205055407) do
+
+  create_table "steps", force: :cascade do |t|
+    t.integer  "todo_id",                    null: false
+    t.boolean  "done",       default: false, null: false
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "content"
+  end
+
+  create_table "steps_tables", force: :cascade do |t|
+    t.text     "content",                    null: false
+    t.integer  "todo_id",                    null: false
+    t.boolean  "done",       default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "todos", force: :cascade do |t|
     t.string   "title",                      null: false
