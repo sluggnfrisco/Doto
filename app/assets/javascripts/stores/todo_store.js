@@ -31,7 +31,7 @@
     },
 
     all: function() {
-      return _todos;
+      return _todos.slice();
     },
 
     fetch: function() {

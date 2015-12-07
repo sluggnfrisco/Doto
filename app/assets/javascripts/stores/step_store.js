@@ -22,7 +22,7 @@
     },
 
     all: function(todoId) {
-      return _steps[todoId];
+      return _steps[todoId].slice();
     },
 
     fetch: function(todoId) {
