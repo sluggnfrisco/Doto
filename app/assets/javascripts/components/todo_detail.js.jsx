@@ -9,6 +9,7 @@ TodoDetail = React.createClass({
     return(
       <div className='todo-detail'>
         {this.props.todo.body}
+        <StepsList todoId={this.props.todo.id}></StepsList>
         <button onClick={this.handleDestroy}>Delete</button>
       </div>
     );

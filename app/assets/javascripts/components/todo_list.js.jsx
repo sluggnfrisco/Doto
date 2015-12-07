@@ -24,7 +24,10 @@ var TodoList = React.createClass({
       <div className='todos-container'>      // REM: need interpolation here
         {
           this.state.todos.map( function(todo) {
-            return( <TodoListItem key={todo.id} todo={todo}></TodoListItem> );
+            return(
+              <TodoListItem key={todo.id} todo={todo}>
+              </TodoListItem>
+            );
           })
         }
 

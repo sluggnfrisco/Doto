@@ -1,6 +1,8 @@
 class Api::StepsController < ApplicationController
   def index           # QUESTION: how are nested routes done again?
-    render json: steps_from_todo_id
+    todo = Todo.find(params[:todo_id])
+    p todo.steps
+    render json: todo.steps
   end
 
   def show            # QUESTION: do i need to get all steps from todo here?
@@ -9,7 +11,7 @@ class Api::StepsController < ApplicationController
   end
 
   def create
-    step = steps_from_todo_id.create!(step_params)
+    step = Step.new(step_params)
     render json: step
   end
 
@@ -29,10 +31,6 @@ class Api::StepsController < ApplicationController
   end
 
   private
-
-  def steps_from_todo_id
-    Todo.find(params[:todo_id]).steps
-  end
 
   def step_params
     params.require(:step).permit(:todo_id, :content, :done)

@@ -18,17 +18,16 @@ var TodoListItem = React.createClass({
 
     //QUESTION: CONDITIONAL ASSIGNMENT OF DETAIL OUT HERE? CAN CREATE EITHER A NEW REACTEL WITH JSX, OR NOTHING -- AND ADD THAT TO THE VERY END!
 
-    var todoDetail;
-    todoDetail = <TodoDetail todo={this.props.todo}></TodoDetail>;
-
-
-    var asdf = (<li>herro</li>);
+    var todoDetail = '';
+    if (this.state.detailShown) {
+      todoDetail = <TodoDetail todo={this.props.todo}></TodoDetail>;
+    }
 
     return (
       <div className='todo-item'>
         <li onClick={this.toggleDetail}>{todo.title}</li>
         <DoneButton todo={this.props.todo}></DoneButton>
-        {detail}
+        {todoDetail}
       </div>
     );
   },

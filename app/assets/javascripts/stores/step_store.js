@@ -22,15 +22,16 @@
     },
 
     all: function(todoId) {
-      return _todos[todoId];
+      return _steps[todoId];
     },
 
     fetch: function(todoId) {
       $.ajax({
-        url: '/api/todos/' + todoId + 'steps',
+        url: '/api/todos/' + todoId + '/steps',
         method: 'GET',
         dataType: 'json',     // NOTE REM: type of response EXPECTED from server
         success: function(response) {
+          // debugger;
           _steps[todoId] = response;
           this.changed();
         }.bind(this),
