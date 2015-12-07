@@ -55,7 +55,10 @@
         success: function(response) {
           step.done = newDone;
           this.changed();
-        }
+        }.bind(this),
+        error: function() {
+          alert('error!');
+        },
       });
     },
 
@@ -73,7 +76,7 @@
         success: function(response) {
           this.deleteIdFromCollection(todoId, stepId);
           this.changed();
-        }
+        }.bind(this),
       });
     },
 

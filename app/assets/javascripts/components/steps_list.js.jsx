@@ -19,14 +19,18 @@ var StepsList = React.createClass({
   },
 
   render: function() {
+    // remember, DO need to bind the map function!
     return (
       <div className='steps-list'>
         {
           this.state.steps.map( function(step) {
             return (
-              <StepItem key={step.id} step={step}></StepItem>
+              <StepItem key={step.id}
+                        step={step}
+                        todoId={this.props.todoId}>
+              </StepItem>
             );
-          })
+          }.bind(this))
         }
       </div>
     );

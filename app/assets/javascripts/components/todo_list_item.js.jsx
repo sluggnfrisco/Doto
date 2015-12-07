@@ -26,7 +26,7 @@ var TodoListItem = React.createClass({
     return (
       <div className='todo-item'>
         <li onClick={this.toggleDetail}>{todo.title}</li>
-        <DoneButton todo={this.props.todo}></DoneButton>
+        <DoneButton todo={this.props.todo} type='todo'></DoneButton>
         {todoDetail}
       </div>
     );
