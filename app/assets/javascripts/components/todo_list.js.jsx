@@ -19,7 +19,7 @@ var TodoList = React.createClass({
   },
 
   render: function() {
-    // NOTE REM: all our JSX is compiled into JS server-side now, so we can't write JSX in the HTML
+    // NOTE REM: all our JSX is compiled into JS server-side now, so we can't write JSX in the HTML -- that'll get loaded directly into the HTML and throw errors
     return (
       <div className='todos-container'>      // REM: need interpolation here
         {
